@@ -1,0 +1,49 @@
+<!--
+  Generated template for the IndexPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>index</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  
+    <!--轮播图-->
+    <ion-slides
+    *ngIf='carousel.length>0'
+    autoplay=2000 loop=true pager=true style='height:100px'>
+        <ion-slide *ngFor='let tmp of carousel'>
+              <img [src]="'http://localhost/ajia_code/'+tmp.img" alt="">
+        </ion-slide>
+    </ion-slides>
+    
+    <ion-scroll scrollX="true" style='height:300px;    white-space:nowrap;'>
+      <ion-card *ngFor='let tmp of newArrivalItems'    style='display:inline-block;'>
+        <ion-card-header><img [src]='"http://127.0.0.1/ajia_code/"+tmp.pic' ></ion-card-header>
+        <ion-card-content>{{tmp.title}}</ion-card-content>
+      </ion-card>
+    </ion-scroll>
+
+    <ion-list>
+      <!--<ion-item *ngFor='let tmp of recommendeItems' text-wrap [navPush]='detail' [navParams]='{fid:tmp.pid}'>-->
+      <ion-item *ngFor='let tmp of recommendeItems' text-wrap (click)='jump(tmp.pid)'>
+        <ion-thumbnail item-start>
+          <img [src]="'http://127.0.0.1/ajia_code/'+tmp.pic" alt="" >
+        </ion-thumbnail>
+
+        <h2>{{tmp.title}}</h2>
+        <p>{{tmp.details}}</p>
+        <button ion-button clear item-end>
+          <ion-icon name='cart'></ion-icon>
+        </button>
+
+      </ion-item>
+    </ion-list>
+</ion-content>
